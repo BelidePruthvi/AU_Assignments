@@ -1,0 +1,76 @@
+> use datagames
+switched to db datagames
+
+Collection games
+
+> db.createCollection('games')
+{ "ok" : 1 }
+
+> db.games.insert({name:'GTA San andreas',genre:'action',rating:81})
+WriteResult({ "nInserted" : 1 })
+> db.games.insert({name:'GTA V',genre:'action',rating:89})
+WriteResult({ "nInserted" : 1 })
+> db.games.insert({name:'FIFA',genre:'sports',rating:80})
+WriteResult({ "nInserted" : 1 })
+> db.games.insert({name:'NFS',genre:'racing',rating:85})
+WriteResult({ "nInserted" : 1 })
+> db.games.insert({name:'Cricket 2007',genre:'sports',rating:75})
+WriteResult({ "nInserted" : 1 })
+
+Write a query that returns all the games 
+
+> db.games.find()
+{ "_id" : ObjectId("5e209188b689fff0f82346a7"), "name" : "GTA San andreas", "genre" : "action", "rating" : 81 }
+{ "_id" : ObjectId("5e209192b689fff0f82346a8"), "name" : "GTA V", "genre" : "action", "rating" : 89 }
+{ "_id" : ObjectId("5e2091a6b689fff0f82346a9"), "name" : "FIFA", "genre" : "sports", "rating" : 80 }
+{ "_id" : ObjectId("5e2091b7b689fff0f82346aa"), "name" : "NFS", "genre" : "racing", "rating" : 85 }
+{ "_id" : ObjectId("5e2091cdb689fff0f82346ab"), "name" : "Cricket 2007", "genre" : "sports", "rating" : 75 }
+
+
+ Write a query to find one of your games by name without using limit(). Use the findOne method. Look how much nicer it’s formatted! 
+
+> db.games.findOne()
+{
+        "_id" : ObjectId("5e209188b689fff0f82346a7"),
+        "name" : "GTA San andreas",
+        "genre" : "action",
+        "rating" : 81
+}
+
+Write a query that returns the 3 highest rated games
+
+> db.games.find().limit(3).sort({rating:-1})
+{ "_id" : ObjectId("5e209192b689fff0f82346a8"), "name" : "GTA V", "genre" : "action", "rating" : 89 }
+{ "_id" : ObjectId("5e2091b7b689fff0f82346aa"), "name" : "NFS", "genre" : "racing", "rating" : 85 }
+{ "_id" : ObjectId("5e209188b689fff0f82346a7"), "name" : "GTA San andreas", "genre" : "action", "rating" : 81 }
+
+
+Update your two favourite games to have two achievements called ‘Game Master’ and ‘Speed Demon’, each under a single key. Show two ways to do this. Do the first using update()and do the second using save(). Hint: for save, you might want to query the object and store it in a variable first. 
+
+
+> var p=db.games.findOne()
+> p.achievement="Gamemaster"
+Gamemaster
+> db.games.save(p)
+
+> db.games.update({name :'NFS'},{"name" : "NFS", "genre" : "racing", "rating" : 85,achievement :"speeddemon"})
+
+> db.games.find()
+{ "_id" : ObjectId("5e209188b689fff0f82346a7"), "name" : "GTA San andreas", "genre" : "action", "rating" : 81, "achievement" : "Gamemaster" }
+{ "_id" : ObjectId("5e209192b689fff0f82346a8"), "name" : "GTA V", "genre" : "action", "rating" : 89 }
+{ "_id" : ObjectId("5e2091a6b689fff0f82346a9"), "name" : "FIFA", "genre" : "sports", "rating" : 80 }
+{ "_id" : ObjectId("5e2091b7b689fff0f82346aa"), "name" : "NFS", "genre" : "racing", "rating" : 85, "achievement" : "speeddemon" }
+{ "_id" : ObjectId("5e2091cdb689fff0f82346ab"), "name" : "Cricket 2007", "genre" : "sports", "rating" : 75 }
+
+Write a query that returns all the games that have both the ‘Game Maser’ and the ‘Speed Demon’ achievements. 
+
+> db.games.find({$or: [{achievement:'Gamemaster'},{achievement:'speeddemon'}]})
+{ "_id" : ObjectId("5e209188b689fff0f82346a7"), "name" : "GTA San andreas", "genre" : "action", "rating" : 81, "achievement" : "Gamemaster" }
+{ "_id" : ObjectId("5e2091b7b689fff0f82346aa"), "name" : "NFS", "genre" : "racing", "rating" : 85, "achievement" : "speeddemon" }
+
+
+Write a query that returns only games that have achievements. Not all of your games should have achievements, obviously. 
+
+> db.games.find({achievement : {$exists: true}})
+{ "_id" : ObjectId("5e209188b689fff0f82346a7"), "name" : "GTA San andreas", "genre" : "action", "rating" : 81, "achievement" : "Gamemaster" }
+{ "_id" : ObjectId("5e2091b7b689fff0f82346aa"), "name" : "NFS", "genre" : "racing", "rating" : 85, "achievement" : "speeddemon" }

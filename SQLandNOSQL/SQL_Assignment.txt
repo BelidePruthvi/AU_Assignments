@@ -1,0 +1,209 @@
+mysql> create database techdb;
+Query OK, 1 row affected (0.34 sec)
+
+mysql> use techdb;
+Database changed
+
+mysql> create table techresume(resume_id int,name varchar(10),email varchar(30),phone varchar(10),joiningdate date,location varchar(20),primary key (resume_id));
+
+Note : As workexperience is a derived joining date is stored
+
+mysql> create table technologies(resume_id int,tech_name varchar(20),foreign key (resume_id) references techresume(resume_id) on delete cascade);
+
+mysql> create table projects(resume_id int,project_name varchar(20),project_desp varchar(100),foreign key (resume_id) references techresume(resume_id) on delete cascade);
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (1,'abc','abc@gmail.com','8179834563','2017-06-15','hyderabad');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (2,'bcd','bcd@gmail.com','8179834545','2018-04-19','hyderabad');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (3,'cde','cde@gmail.com','8179834456','2019-01-30','hyderabad');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (4,'def','def@gmail.com','8179834555','2020-01-01','bangalore');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (5,'efg','efg@gmail.com','8179456555','2019-09-01','bangalore');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (6,'fgh','fgh@gmail.com','8179456564','2019-11-11','bangalore');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (7,'ghi','ghi@gmail.com','8179216564','2016-11-11','delhi');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (8,'hij','hij@gmail.com','9879216564','2010-10-19','delhi');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (9,'ijk','ijk@gmail.com','9879217864','2019-05-19','chennai');
+
+mysql> insert into techresume (resume_id,name,email,phone,joiningdate,location) values (10,'jkl','jkl@gmail.com','9812217864','2015-04-30','mumbai');
+
+mysql> select * from techresume;
++-----------+------+---------------+------------+-------------+-----------+
+| resume_id | name | email         | phone      | joiningdate | location  |
++-----------+------+---------------+------------+-------------+-----------+
+|         1 | abc  | abc@gmail.com | 8179834563 | 2017-06-15  | hyderabad |
+|         2 | bcd  | bcd@gmail.com | 8179834545 | 2018-04-19  | hyderabad |
+|         3 | cde  | cde@gmail.com | 8179834456 | 2019-01-30  | hyderabad |
+|         4 | def  | def@gmail.com | 8179834555 | 2020-01-01  | bangalore |
+|         5 | efg  | efg@gmail.com | 8179456555 | 2019-09-01  | bangalore |
+|         6 | fgh  | fgh@gmail.com | 8179456564 | 2019-11-11  | bangalore |
+|         7 | ghi  | ghi@gmail.com | 8179216564 | 2016-11-11  | delhi     |
+|         8 | hij  | hij@gmail.com | 9879216564 | 2010-10-19  | delhi     |
+|         9 | ijk  | ijk@gmail.com | 9879217864 | 2019-05-19  | chennai   |
+|        10 | jkl  | jkl@gmail.com | 9812217864 | 2015-04-30  | mumbai    |
++-----------+------+---------------+------------+-------------+-----------+
+
+mysql> insert into technologies (resume_id,tech_name) values(1,'javascript');
+
+mysql> insert into technologies (resume_id,tech_name) values(1,'html');
+
+mysql> insert into technologies (resume_id,tech_name) values(1,'react');
+
+mysql> insert into technologies (resume_id,tech_name) values(1,'angular');
+
+mysql> insert into technologies (resume_id,tech_name) values(2,'html');
+
+mysql> insert into technologies (resume_id,tech_name) values(2,'javascript');
+
+mysql> insert into technologies (resume_id,tech_name) values(3,'javascript');
+
+mysql> insert into technologies (resume_id,tech_name) values(4,'c');
+
+mysql> insert into technologies (resume_id,tech_name) values(4,'c++');
+
+mysql> insert into technologies (resume_id,tech_name) values(5,'java');
+
+mysql> insert into technologies (resume_id,tech_name) values(6,'javascript');
+
+mysql> insert into technologies (resume_id,tech_name) values(6,'react');
+
+mysql> insert into technologies (resume_id,tech_name) values(6,'html');
+
+mysql> insert into technologies (resume_id,tech_name) values(8,'html');
+
+mysql> insert into technologies (resume_id,tech_name) values(9,'python');
+
+mysql> insert into technologies (resume_id,tech_name) values(10,'html');
+
+mysql> insert into technologies (resume_id,tech_name) values(10,'javascript');
+
+mysql> select * from technologies;
++-----------+------------+
+| resume_id | tech_name  |
++-----------+------------+
+|         1 | javascript |
+|         1 | html       |
+|         1 | react      |
+|         1 | angular    |
+|         2 | html       |
+|         2 | javascript |
+|         3 | javascript |
+|         4 | c          |
+|         4 | c++        |
+|         5 | java       |
+|         6 | javascript |
+|         6 | react      |
+|         6 | html       |
+|         8 | html       |
+|         9 | python     |
+|        10 | html       |
+|        10 | javascript |
++-----------+------------+
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (1,'helpinghand','connect people who are in need to people who are willing to help');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (2,'helpinghand','connect people who are in need to people who are willing to help');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (4,'helpinghand','connect people who are in need to people who are willing to help');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (5,'reminder','reminder for medicines');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (6,'reminder','reminder for medicines');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (7,'reminder','reminder for medicines');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (9,'placement management','college placement management');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (10,'placement management','college placement management');
+
+mysql> insert into projects (resume_id,project_name,project_desp) values (1,'placement management','college placement management');
+
+mysql> select * from projects;
++-----------+----------------------+------------------------------------------------------------------+
+| resume_id | project_name         | project_desp                                                     |
++-----------+----------------------+------------------------------------------------------------------+
+|         1 | helpinghand          | connect people who are in need to people who are willing to help |
+|         2 | helpinghand          | connect people who are in need to people who are willing to help |
+|         4 | helpinghand          | connect people who are in need to people who are willing to help |
+|         5 | reminder             | reminder for medicines                                           |
+|         6 | reminder             | reminder for medicines                                           |
+|         7 | reminder             | reminder for medicines                                           |
+|         9 | placement management | college placement management                                     |
+|        10 | placement management | college placement management                                     |
+|         1 | placement management | college placement management                                     |
++-----------+----------------------+------------------------------------------------------------------+
+
+
+
+Get list of candidates based in ‘Hyderabad’ which were added to the system in the past 3 months
+
+mysql> select * from techresume where location="hyderabad" and timestampdiff(month,joiningdate,curdate())>3;
++-----------+------+---------------+------------+-------------+-----------+
+| resume_id | name | email         | phone      | joiningdate | location  |
++-----------+------+---------------+------------+-------------+-----------+
+|         1 | abc  | abc@gmail.com | 8179834563 | 2017-06-15  | hyderabad |
+|         2 | bcd  | bcd@gmail.com | 8179834545 | 2018-04-19  | hyderabad |
+|         3 | cde  | cde@gmail.com | 8179834456 | 2019-01-30  | hyderabad |
++-----------+------+---------------+------------+-------------+-----------+
+
+Get count of candidates in all cities, who know Jsvascript and Html
+
+mysql> select location,count(*) from techresume where resume_id in (select resume_id from technologies where tech_name="javascript") and resume_id in (select resume_id from technologies where tech_name="html") group by location;
++-----------+----------+
+| location  | count(*) |
++-----------+----------+
+| hyderabad |        2 |
+| bangalore |        1 |
+| mumbai    |        1 |
++-----------+----------+
+
+
+
+
+
+Get list of all candidates sorted by “maximum number of technologies known to him/her” 
+
+mysql> select tr.name,count(*) from techresume tr,technologies t where tr.resume_id=t.resume_id group by t.resume_id order by count(*) desc;
++------+----------+
+| name | count(*) |
++------+----------+
+| abc  |        4 |
+| fgh  |        3 |
+| bcd  |        2 |
+| def  |        2 |
+| jkl  |        2 |
+| cde  |        1 |
+| efg  |        1 |
+| hij  |        1 |
+| ijk  |        1 |
++------+----------+
+
+
+
+
+Create a view that HR can query everyday to get the new candidates added previous day. 
+
+
+mysql> create view HR as (select name,email,phone,joiningdate,location from techresume);
+
+mysql> select * from HR;
+
++------+---------------+------------+-------------+-----------+
+| name | email         | phone      | joiningdate | location  |
++------+---------------+------------+-------------+-----------+
+| abc  | abc@gmail.com | 8179834563 | 2017-06-15  | hyderabad |
+| bcd  | bcd@gmail.com | 8179834545 | 2018-04-19  | hyderabad |
+| cde  | cde@gmail.com | 8179834456 | 2019-01-30  | hyderabad |
+| def  | def@gmail.com | 8179834555 | 2020-01-01  | bangalore |
+| efg  | efg@gmail.com | 8179456555 | 2019-09-01  | bangalore |
+| fgh  | fgh@gmail.com | 8179456564 | 2019-11-11  | bangalore |
+| ghi  | ghi@gmail.com | 8179216564 | 2016-11-11  | delhi     |
+| hij  | hij@gmail.com | 9879216564 | 2010-10-19  | delhi     |
+| ijk  | ijk@gmail.com | 9879217864 | 2019-05-19  | chennai   |
+| jkl  | jkl@gmail.com | 9812217864 | 2015-04-30  | mumbai    |
++------+---------------+------------+-------------+-----------+
