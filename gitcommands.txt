@@ -1,0 +1,28 @@
+List Of Commands :
+
+git init - Initialize  a repo
+
+git status - Get the status of the project
+
+git add [filename](to add a file)
+
+git add * 
+git add . (To add all the files)
+
+
+git add -p (to stage only part of the files)
+
+git log
+
+git log --stats
+
+git diff (to see the change of the commits)
+
+git merge [branchname]
+
+git checkout [branchname]
+
+
+Git pull origin <branch_name>
+
+
