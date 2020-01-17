@@ -1,0 +1,36 @@
+<h1 style="text-align: center; color: blue;">Users list</h1>
+
+<div ng-controller="ListCtrl">
+      <div style="max-width: 500px; margin-left: 1000px; ">
+     <input type="text"  [(ngModel)]="term" class="form-control" placeholder="Search"  style="float: right;"  aria-describedby="basic-addon1">
+    </div>
+     <br>
+     <br>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+          <th (click)="firstnamesort()"> FirstName</th>
+          <th (click)="lastnamesort()">LastName</th>
+          <th (click)="agesort()">Age</th>
+          <th (click)="dobsort()">DOB</th>
+          <th (click)="phonesort()">PhoneNumber</th>
+          <th></th>
+          <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+          <tr mdbTableCol *ngFor="let key of values | filter : term">
+            <th scope="row" (click)="firstnamesort()">{{key['firstname'] | initialCapital}}</th>
+            <td (click)="lastnamesort()">{{key['lastname'] | initialCapital}}</td>
+            <td (click)="agesort()">{{key['age']}}</td>
+            <td (click)="dobsort()">{{key['dob']}}</td>
+            <td (click)="phonesort()">{{key['phonenumber']}}</td>
+            <td><button class="btn btn-primary" (click)="edit(key['phonenumber'])">Edit</button></td>
+            <td><button class="btn btn-primary" (click)="delete(key['phonenumber'])">Delete</button></td>
+          </tr>
+      
+      </tbody>
+    </table>
+    </div>
