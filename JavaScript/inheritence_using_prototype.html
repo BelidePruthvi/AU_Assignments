@@ -1,0 +1,23 @@
+<html>
+<head>
+<script>
+function Person(name,age)
+{
+	this.name=name;
+	this.age=age;
+}
+function Student(rollno,person)
+{
+	this.rollno=rollno;
+	this.__proto__=person;
+}
+const ob=new Person('abc',20);
+const ob1=new Student(1,ob);
+console.log(ob);
+console.log(ob1);
+</script>
+</head>
+<body>
+works
+</body>
+</html>
