@@ -1,0 +1,64 @@
+<html>
+<head>
+<script>
+function greetings(message,trid)
+{
+    console.log(message + " "+ this.name);
+    var st= message + " "+ this.name + " rollno: " + this.rollno;
+    console.log(trid);
+    console.log(typeof(trid));
+    document.getElementById(trid).innerHTML=st;
+}
+
+var StudentModule=(function(){
+	var student={}
+	return {
+		addnameage : function(name,age){
+		student['name']=name;
+		student['age']=age;
+		return function(rollno){
+			student['rollno']=rollno;
+		}
+	},
+	getStudent : function (){
+		return student;
+	}
+};
+}());
+
+function startfunc()
+{
+    var rollnofun = StudentModule.addnameage('pruthvi',20);
+    rollnofun(1);
+    obj=StudentModule.getStudent();
+    console.log(obj);
+    greetings.call(obj,"Hello","call");
+    greetings.apply(obj,["Hi","apply"]);
+    var binding=greetings.bind(obj);
+    binding("welcome","bind");
+}
+</script>
+</head>
+<body>
+<h1 style="text-align: center;">Modular pattern,Closure bind,apply and call</h1>
+<table border="1">
+    <tr>
+        <th>Method</th>
+        <th>Greetings</th>
+    </tr>
+    <tr>
+        <td>Using Call</td>
+        <td><b id="call"></b></td>
+    </tr>
+    <tr>
+        <td>Using Apply</td>
+        <td><b id="apply"></b></td>
+    </tr>
+    <tr>
+        <td>Using Bind</td>
+        <td><b id="bind"></b></td>
+    </tr>
+</table>
+<button onclick="startfunc()">ClickMe</button>
+</body>
+</html>
