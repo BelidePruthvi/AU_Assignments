@@ -1,0 +1,32 @@
+<form [formGroup]="UserForm" (ngSubmit)="onSubmit()">
+
+    <h1 style="text-align: center;color: blue;">Add User</h1><br><br>
+    <div style="width:600px; margin:0 auto;">
+    <div class="form-group">
+        <label for="formGroupExampleInput">FirstName</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="First name" formControlName="firstname">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">LastName</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Lastname" formControlName="lastname">
+      </div>
+
+      <div class="form-group">
+        <label for="formGroupExampleInput3">Age</label>
+        <input type="number" class="form-control" id="formGroupExampleInput3" placeholder="Enter age" formControlName="age">
+      </div>
+      <!-- <div class="form-group">
+        <label for="formGroupExampleInput4">DOB</label>
+        <input type="date" class="form-control" id="formGroupExampleInput4" placeholder="Date of birth" formControlName="dob">
+      </div> -->
+      <div class="form-group">
+        <label for="formGroupExampleInput5">Phone Number</label>
+        <input type="tel" class="form-control" id="formGroupExampleInput5" placeholder="Phone Number" formControlName="phonenumber">
+      </div>
+
+
+      <button type="submit" [disabled]="!UserForm.valid" style="margin-left: 200px;" >Submit</button>
+
+    </div>
+
+  </form>
